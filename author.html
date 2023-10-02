@@ -8,6 +8,33 @@
 <body>
 
     <h2>Author entry Shivani Goud Pandula</h2>
+    <div id="imageContainer">
+        <img id="cityImage" src="arizona1.jpg" alt="Arizona" width="100" height="100" onclick="selectImage()">
+    </div>
+
+    <script>
+        let useImage = 1;
+        function selectImage() {
+            const imageElement = document.getElementById("cityImage");
+
+            switch (useImage) {
+                case 1:
+                    imageElement.src = "arizona1.jpg";
+                    useImage = 2;
+                    break;
+                case 2:
+                    imageElement.src = "Dallas.jpg";
+                    useImage = 3;
+                    break;
+                case 3:
+                    imageElement.src = "losangeles2.jpg";
+                    useImage = 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
 
     <form>
         <label for="author_name">The hidden author name </label>
