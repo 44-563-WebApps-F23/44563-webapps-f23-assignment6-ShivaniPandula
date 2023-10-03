@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Amount and Tip</title>
+</head>
+
+<body>
+
+    <h2> shows tip amounts</h2>
+
+    <form>
+        <label for="form1_age">What is your age </label>
+        <input type="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+
+        <label for="form1_nick">What is your nickname </label>
+        <input type="text" id="form1_nick" name="form1_nick" autofocus> <br>
+
+        <input type="button" onclick="resolveForm()" value="Get values from form"><br>
+    </form>
+    <form>
+        <label for="baseAmount">Enter base amount:</label>
+        <input type="number" id="baseAmount" value="50"><br>
+
+        <label for="tipPercent">Enter the tip percent:</label>
+        <input type="number" id="tipPercent" value="15"><br>
+
+        <input type="button" onclick="tips()" value="Show tip"><br>
+    </form>
+
+    <div id="tipResults"></div>
+
+    <script>
+        function tips() {
+            const base_Amount = parseFloat(document.getElementById("baseAmount").value);
+            const tip_Percent = parseFloat(document.getElementById("tipPercent").value);
+            let myOutput = "";
+            for (let i = 0; i < 5; i++) {
+                const tipValue = tip_Percent + i * 4;
+                const calculatedTip = (base_Amount * tipValue) / 100;
+                myOutput += `${tipValue}% is ${calculatedTip.toFixed(2)}; `;
+            }
+
+            document.getElementById("tipResults").textContent = "Tips are: " + myOutput;
+        }
+    </script>
+
+    <h4><b>Operations</b></h4>
+    <form>
+
+        <input type="radio" name="operation" value="sum" onclick="chooseOp()" id="sum">
+        <label for="sum">Sum</label><br>
+
+        <input type="radio" name="operation" value="diff" onclick="chooseOp()" id="diff">
+        <label for="diff">Difference</label><br>
+
+        <input type="radio" name="operation" value="mult" onclick="chooseOp()" id="mult">
+        <label for="mult">Product</label>
+    </form>
+    <div id="operations_Result"></div>
+    
+    <script>
+        function chooseOp() {
+            const base_Value = parseFloat(document.getElementById("baseAmount").value);
+            const tip_Value = parseFloat(document.getElementById("tipPercent").value);
+            const operation_Elements = document.getElementsByName("operation");
+            let operations_Result = "";
+
+            for (let i = 0; i < operation_Elements.length; i++) {
+                if (operation_Elements[i].checked) {
+                    const operation = operation_Elements[i].value;
+                    let result;
+
+                    switch (operation) {
+                        case "sum":
+                            result = base_Value + tip_Value;
+                            break;
+                        case "diff":
+                            result = base_Value - tip_Value;
+                            break;
+                        case "mult":
+                            result = base_Value * tip_Value;
+                            break;
+                    }
+                    operations_Result = `${operation} of ${base_Value} and ${tip_Value} is ${result}`;
+                    break;
+                }
+            }
+
+            document.getElementById("operations_Result").textContent = operations_Result;
+        }
+
+    </script>
+
+
+    <p id="result">This text will be replaced </p>
+
+    <script>
+
+        function resolveForm() {
+            console.log("Getting form values")
+            age = document.getElementById("form1_age").value
+            nick = document.getElementById("form1_nick").value
+            confirmed = confirm("Are these the values? " + age + " and " + nick)
+
+            out = document.getElementById("result")
+            if (confirmed) {
+                out.innerHTML = "Values were confirmed"
+            } else {
+                out.innerHTML = "Values were not confirmed"
+            }
+        }
+    </script>
+
+</body>
+
+</html>
