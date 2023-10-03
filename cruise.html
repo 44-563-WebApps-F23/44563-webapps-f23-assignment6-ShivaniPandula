@@ -20,9 +20,10 @@
 
         <input type="checkbox" id="poolPass" value="False">
         <label for="poolPass">Pool Pass</label><br>
+        <input type="button" onclick="selectCruise()" value="Select a cruise">=
     </form>
-    <input type="button" onclick="selectCruise()" value="Select a cruise">
-    <div id="cruiseResults"></div>
+
+    <div id="cruiseResults1"></div>
     <script>
         let my_cruise = {};
 
@@ -36,8 +37,30 @@
             my_cruise.shared = sharesCabin;
             my_cruise.breakfast = breakfast;
             my_cruise.pool = poolPass;
-           
-            document.getElementById("cruiseResults").innerHTML = JSON.stringify(my_cruise);
+
+            document.getElementById("cruiseResults1").innerHTML = JSON.stringify(my_cruise);
+        }
+    </script>
+
+    <form>
+        <label for="property_Name">Enter the number of days</label>
+        <input type="text" id="property_Name" value="days"><br>
+
+        <label for="property_Value">Enter a value:</label>
+        <input type="text" id="property_Value"><br>
+
+        <input type="button" onclick="updateCruise()" value="Update the cruise">
+    </form>
+    <div id="cruiseResults2"></div>
+    <script>
+        function updateCruise() {
+            my_cruises = {};
+            const property_Name = document.getElementById("property_Name").value;
+            const property_Value = document.getElementById("property_Value").value;
+
+            my_cruises[property_Name] = property_Value;
+
+            document.getElementById("cruiseResults2").innerHTML = JSON.stringify(my_cruises);
         }
 
     </script>
