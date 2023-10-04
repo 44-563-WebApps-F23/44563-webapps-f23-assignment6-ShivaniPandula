@@ -43,11 +43,11 @@
     </script>
 
     <form>
-        <label for="property_Name">Enter the number of days</label>
-        <input type="text" id="property_Name" value="days"><br>
+        <label for="property_Day">Enter the number of days</label>
+        <input type="text" id="property_Day" value="days"><br>
 
-        <label for="property_Value">Enter a value:</label>
-        <input type="text" id="property_Value"><br>
+        <label for="property_price">Enter price</label>
+        <input type="text" id="property_price"><br>
 
         <input type="button" onclick="updateCruise()" value="Update the cruise">
     </form>
@@ -55,10 +55,10 @@
     <script>
         function updateCruise() {
             my_cruises = {};
-            const property_Name = document.getElementById("property_Name").value;
-            const property_Value = document.getElementById("property_Value").value;
+            const property_Day = document.getElementById("property_Day").value;
+            const property_price = document.getElementById("property_price").value;
 
-            my_cruises[property_Name] = property_Value;
+            my_cruises[property_Day] = property_price;
 
             document.getElementById("cruiseResults2").innerHTML = JSON.stringify(my_cruises);
         }
